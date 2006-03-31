@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.3.9: http://docutils.sourceforge.net/" />
+<title>CC Ajax License Chooser Demonstration</title>
+<link rel="stylesheet" href="default.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="cc-ajax-license-chooser-demonstration">
+<h1 class="title">CC Ajax License Chooser Demonstration</h1>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">$Author$</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">$Revision$</td>
+</tr>
+<tr class="field"><th class="field-name">Updated:</th><td class="field-body">$Date$</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<div class="section" id="what">
+<h1><a name="what">What</a></h1>
+<blockquote>
+<p>This package implements a sample browser client for the Creative Commons 
+license engine web service.  More information on the web services can be
+found at <a class="reference" href="http://api.creativecommons.org">http://api.creativecommons.org</a>.</p>
+<p>The implementation included in this package uses PHP to proxy web service
+requests from your local web host to api.creativecommons.org.  It also uses
+Javascript to implement an <a class="reference" href="http://en.wikipedia.org/wiki/AJAX">AJAX</a> interface, like that found in <a class="reference" href="http://yergler.net/projects/wpLicense">wpLicense</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="how">
+<h1><a name="how">How</a></h1>
+<blockquote>
+<p>The cc_ajax package provides both PHP and Javascript files which combine to 
+implement a basic license chooser.  To integrate a license chooser in your
+web-based application:</p>
+<ol class="arabic">
+<li><p class="first">Modify the WS_ROOT_URL variable in cc_ajax/client.js to point to the 
+location of your copy of ccwsclient.php.  Due to browser security 
+restrictions, this must be in the same domain as your license chooser.</p>
+<p>For example, if your are implementing a license chooser at 
+<a class="reference" href="http://example.com/choose.php">http://example.com/choose.php</a> with the cc_ajax library installed at the
+root, WS_ROOT_URL would be <a class="reference" href="http://example.com/cc_ajax/ccwsclient.php">http://example.com/cc_ajax/ccwsclient.php</a>.</p>
+</li>
+<li><p class="first">Upload the cc_ajax package to your web server.</p>
+</li>
+<li><p class="first">Include the chooser in your page by requiring the cc_ajax/cc_ajax.php
+library.  This file defines two functions which are used to generate
+the license chooser:</p>
+<ol class="arabic">
+<li><p class="first">scriptHeader($base)</p>
+<p>Generates the &lt;script&gt; tags necessary for including the Javascript
+libraries.  In the above example, you would use</p>
+<pre class="literal-block">
+&lt;?php scriptHeader(&quot;http://example.com&quot;); ?&gt;
+</pre>
+</li>
+<li><p class="first">licenseChooser($action, $prefix)</p>
+<p>Generates the license chooser itself.  $action specifies the URL to
+post the form to; the package includes choose.php which simply 
+shows the results of the form.  $prefix specifies a string to prefix
+the form variables with.  For example</p>
+<pre class="literal-block">
+&lt;?php licenseChooser('choose.php', ''); ?&gt;
+</pre>
+</li>
+</ol>
+</li>
+<li><p class="first">The form uses the following variables:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">license_name</span></tt> The human-readable name of the license</li>
+<li><tt class="docutils literal"><span class="pre">license_uri</span></tt>  The URI of the license deed</li>
+<li><tt class="docutils literal"><span class="pre">license_rdf</span></tt>  The RDF block which describes the license permissions,
+prohibitions and requirements.</li>
+<li><tt class="docutils literal"><span class="pre">license_html</span></tt> The HTML block, including the RDF-in-a-comment,
+suitable for embedding in a web page.</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="acknowledgements">
+<h1><a name="acknowledgements">Acknowledgements</a></h1>
+<blockquote>
+<dl class="docutils">
+<dt>cc_ajax is built using excellent Open Source libraries, including:</dt>
+<dd><ul class="first last simple">
+<li>Simple AJAX Code-Kit (<a class="reference" href="http://twilightuniverse.com/projects/sack/">http://twilightuniverse.com/projects/sack/</a>)</li>
+<li>Behaviour (<a class="reference" href="http://www.ripcord.co.nz/behaviour/">http://www.ripcord.co.nz/behaviour/</a>)</li>
+<li>miniXml (<a class="reference" href="http://minixml.psychogenic.com/">http://minixml.psychogenic.com/</a>)</li>
+</ul>
+</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="license">
+<h1><a name="license">License</a></h1>
+<blockquote>
+cc_ajax is licensed under the <a class="reference" href="http://opensource.org/licenses/mit-license.php">MIT License</a>.  
+See docs/LICENSE
+in the distribution for full license text.  This documentation is 
+licensed under a <a class="reference" href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution 2.5 License</a>.</blockquote>
+</div>
+</div>
+</body>
+</html>
