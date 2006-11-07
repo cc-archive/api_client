@@ -34,7 +34,7 @@ img {
 
   <body>
 <form name="license_options" method="post" action="%s">
-<?php licenseChooser($action='choose.php', $base='.'); ?>
+<?php licenseChooser($base='.'); ?>
 </form>
 
   </body>
