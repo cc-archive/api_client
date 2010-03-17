@@ -89,7 +89,7 @@ class CcRest:
         self._cur_license['__keys__'] = keys
         return self._cur_license
 
-    def issue(self, license, answers, lang='en'):
+    def issue(self, license, answers, work_info=None, lang='en'):
         l_url = '%s/license/%s/issue' % (self.root, license)
 
         # construct the answers.xml document from the answers dictionary
@@ -103,9 +103,18 @@ class CcRest:
 
         answer_xml = """%s
           </license-%s>
+          %%s
         </answers>
         """ % (answer_xml, license)
 
+        if work_info:
+            answer_xml %= (
+                      '<work-info>' + \
+                        '\n'.join(['<%s>%s</%s>' % (k,v,k)
+                                   for k,v in work_info.items()]) + \
+                      '</work-info>')
+        else:
+            answer_xml %= ''
         
         # retrieve the license source document
         try:
